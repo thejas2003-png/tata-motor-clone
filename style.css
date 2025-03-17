@@ -1,0 +1,379 @@
+@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&display=swap');
+
+*{
+    margin: 0;
+    font-family: "Dosis", sans-serif;
+}
+
+
+/* Navigation Bar */
+
+header{
+    background: linear-gradient(180deg, #020202 0%, rgba(0, 0, 0, 0) 100%);
+    position: fixed; 
+    top: 0;         
+    width: 100%;    
+    z-index: 1000;  
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    transition: all 0.5s ease-in;
+    height: 70px;
+    animation: drag_nav 1s ease-in-out forwards;
+    opacity: 0;
+}
+
+@keyframes drag_nav {
+    0%{
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+
+    100%{
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+header ul{
+    display: flex;
+    gap: 20px;
+    margin: 0;
+}
+
+.scrolled{
+    background-color: #000;
+}
+
+.hidden {
+    top: -70px; /* Hides the navbar */
+}
+
+header ul li{
+    list-style-type: none;
+    font-weight: 600;
+}
+
+header ul li a{
+    text-decoration: none;
+    color: aliceblue;
+    font-size: 16px;
+    text-transform: uppercase;
+}
+
+header img{
+    width: 200px;
+}
+
+header img.right_logo{
+    width: 100px;
+}
+
+/* main Banner css */
+.carousel-item{
+    position: relative;
+}
+.text{
+    position: absolute;
+    top: 200px;
+    left: 100px;
+    display: flex;
+    flex-direction: column;
+    z-index: 100;
+    color: #fff;
+    gap: 20px;
+    animation: drag 0.5s ease-in-out forwards;
+    opacity: 0;
+    h1{
+        font-size: 70px;
+    }
+    span{
+        font-size: 30px;
+    }
+    a{
+        font-size: 24px;
+        color: #fff;
+    }
+}
+
+@keyframes drag {
+    0%{
+        transform: translateY(100px);
+        opacity: 0;
+    }
+    100%{
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.about_us{
+    background-image: url("Background_About_us.webp");
+    position: relative;
+    
+}
+
+.about_info{
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    justify-content: center;
+    align-items: center;
+    gap: 100px;
+    padding-top: 70px;
+}
+
+.about_info .item{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.item{
+    h2{
+        color: #000000;
+    font-size: 40px;
+    line-height: 50px;
+    }
+    p{
+        font-size: 19px;
+    line-height: 24px;
+    color: #000000;
+    }
+    span{
+        color: #000000;
+        font-size: 16px;
+        line-height: 24px;
+        margin-bottom: 10px;
+    }
+    a{
+        color: #0a0a5f;
+        font-size: 24px;
+    }
+}
+
+.car_block{
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    overflow: hidden;
+}
+
+.car_block img.left_car{
+    width: 800px;
+    height: auto;
+}
+
+.left_car{
+    position: absolute;
+    right: 1000px;
+    bottom: 0;
+}
+
+.car_block img.right_car{
+    width: 800px;
+    height: auto;
+    z-index: 999;
+}
+
+.right_car{
+    position: absolute;
+    left: 1000px;
+    bottom: 0;
+}
+
+.center_car{
+    position: relative;
+    left: 450px;
+    bottom: 0;
+    transform: scale(0.7);
+    animation: zoom_car 0.5s ease-in-out forwards;
+    transition: all 1.5s ease-in-out;
+}
+
+@keyframes zoom_car {
+    0%{
+    transform: scale(0.7);
+    }
+    100%{
+        transform: scale(1);
+    }
+}
+
+/* Card css */
+.slider_card{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 20px;
+    padding: 50px;
+    overflow: hidden;
+    background-color: #000000;
+}
+
+.slider_card::before {
+    content: "";
+    width: 100%;
+    height: 200px;
+    position: absolute;
+    top: -198px;
+    left: 0px;
+    z-index: 1;
+    background: linear-gradient(to bottom, rgba(125, 185, 232, 0) 0%, rgba(0, 0, 0, 0.78) 78%, rgb(0, 0, 0) 100%);
+}
+
+/* .carousel-item img{
+    mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 70%, rgba(0, 0, 0, 0));
+} */
+.card_item{
+    position: relative;
+    /* Fade-out effect at the bottom */
+    mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 70%, rgba(0, 0, 0, 0));
+    transition: all 0.5s ease-in-out;
+}
+
+.card_item::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 0; /* Initially hidden */
+    background: linear-gradient(to top, rgba(0, 0, 255, 0.8),rgba(0, 0, 255, 0.8), rgba(0, 0, 255, 0)); /* Blue gradient */
+    transition: height 0.3s ease-in-out;
+}
+
+.card_item:hover{
+    transform: translateY(-10px);
+    transition: all 0.3s ease-in-out;
+    mask-image: none;
+
+}
+
+.card_item:hover::after {
+    height: 40%; /* Expands from the bottom on hover */
+    border-radius: 30px;
+
+}
+
+.card_item img{
+    width: 350px;
+    border-radius: 30px;
+}
+
+.card_info{
+    position: absolute;
+    bottom: 40px;
+    left: 20px;
+    color: #fff;
+    font-size: 30px;
+    animation: drag 2s ease-in forwards;
+}
+
+
+
+.card_info a{
+    color: #fff;
+    font-size: 24px;
+}
+
+/* Road map css */
+.map_outer{
+    background-color: #fff;
+    padding: 50px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+
+.map_item{
+    height: 700px;
+    position: relative;
+    border-radius: 60px;
+
+}
+
+
+
+.map_item img{
+    width: 100%;
+    height: 700px;
+    object-fit: cover;
+    border-radius: 60px;
+
+}
+
+.map_item::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    border-radius: 60px;
+    width: 100%; height: 100%;
+    background: linear-gradient(90deg, #000 0%, rgba(0, 0, 0, 0) 51.77%);
+}
+
+.map_text{
+    position: absolute;
+    top: 200px;
+    left: 15px;
+    display: flex;
+    flex-direction: column;
+    z-index: 100;
+    color: #fff;
+    gap: 20px;
+    animation: drag_map 0.5s ease-in-out forwards;
+    opacity: 0;
+    p {
+        color: #ffffff;
+        max-width: 640px;
+        font-size: 20px;
+        line-height: 26px;
+        margin-bottom: 30px;
+    }
+    a{
+        padding: 12px 35px;
+    color: #ffffff;
+    font-size: 18px;
+        background-color: #0a0a5f;
+        max-width: 140px;
+        border-radius: 70px;
+        text-decoration: none;
+    }
+}
+
+@keyframes drag_map {
+    0%{
+        transform: translateX(-100px);
+        opacity: 0;
+    }
+    100%{
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.d-flex{
+    gap: 20px;
+    a{
+        max-width: 100%;
+    }
+}
+
+/* Footer section css */
+
+footer{
+    padding: 50px;
+    background-color: rgb(10, 10, 95);
+}
+
+.footer_outer{
+    color: aliceblue;
+    display: grid;
+    grid-template-columns: repeat(6,1fr);
+}
+.foot_info ul{
+    padding: 0;
+}
+
+ul li{
+    list-style-type: none;
+}
